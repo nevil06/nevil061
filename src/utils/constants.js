@@ -12,7 +12,7 @@ export const GITHUB_API_URL = `https://api.github.com/users/${GITHUB_USERNAME}/r
 export const PERSONAL_INFO = {
   name: 'Nevil Anson Dsouza',
   title: 'Full Stack Developer',
-  email: 'contact@nevil.dev', // Update with actual email
+  email: 'nevilaansondsouza@gmail.com',
   location: 'India',
 };
 
