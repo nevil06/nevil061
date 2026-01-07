@@ -11,13 +11,11 @@ export const fetchGitHubRepos = async () => {
             params: {
                 sort: 'updated',
                 per_page: 100,
-                type: 'owner',
             },
         });
 
-        // Filter out forks and sort by stars
+        // Sort by stars, show all public repos (including forks)
         const repos = response.data
-            .filter(repo => !repo.fork)
             .sort((a, b) => b.stargazers_count - a.stargazers_count);
 
         return repos;
