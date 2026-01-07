@@ -7,6 +7,14 @@ const About = () => {
             <div className="container">
                 <h2 className="section-title">About Me</h2>
 
+                <div className="profile-image-container">
+                    <img
+                        src="/profile.jpg"
+                        alt="Nevil Anson Dsouza - Full Stack Developer"
+                        className="profile-image"
+                    />
+                </div>
+
                 <div className="about-content">
                     <div className="about-text">
                         <p className="about-intro">
