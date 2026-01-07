@@ -14,8 +14,9 @@ export const fetchGitHubRepos = async () => {
             },
         });
 
-        // Sort by stars, show all public repos (including forks)
+        // Filter out specific repos and sort by stars
         const repos = response.data
+            .filter(repo => repo.name.toLowerCase() !== 'n8n')
             .sort((a, b) => b.stargazers_count - a.stargazers_count);
 
         return repos;
