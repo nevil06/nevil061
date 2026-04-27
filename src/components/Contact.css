@@ -1,5 +1,5 @@
 .contact-section {
-    background: var(--color-bg-dark);
+    background: var(--color-primary);
     color: var(--color-text-inverse);
     position: relative;
     text-align: center;
@@ -14,7 +14,7 @@
     font-weight: 800;
     font-family: var(--font-display);
     color: var(--color-text-inverse);
-    opacity: 0.05;
+    opacity: 0.1;
     line-height: 1;
 }
 
@@ -50,7 +50,7 @@
     font-family: var(--font-display);
     text-decoration: none;
     padding: var(--spacing-md) var(--spacing-xl);
-    border: 2px solid var(--color-accent);
+    border: 2px solid var(--color-text-inverse);
     border-radius: var(--radius-sm);
     background: transparent;
     transition: all var(--transition-base);
@@ -58,10 +58,10 @@
 }
 
 .email-link:hover {
-    background: var(--color-accent);
-    color: var(--color-text-primary);
+    background: var(--color-text-inverse);
+    color: var(--color-primary);
     transform: translate(-2px, -2px);
-    box-shadow: 4px 4px 0px var(--color-text-inverse);
+    box-shadow: 4px 4px 0px rgba(255, 255, 255, 0.3);
 }
 
 .contact-social {
@@ -82,14 +82,14 @@
     border-radius: var(--radius-sm);
     color: var(--color-text-inverse);
     transition: all var(--transition-base);
-    box-shadow: 3px 3px 0px var(--color-text-inverse);
+    box-shadow: 3px 3px 0px rgba(255, 255, 255, 0.3);
 }
 
 .social-icon:hover {
     transform: translate(-2px, -2px);
-    box-shadow: 5px 5px 0px var(--color-text-inverse);
-    background: var(--color-accent);
-    color: var(--color-text-primary);
+    box-shadow: 5px 5px 0px rgba(255, 255, 255, 0.5);
+    background: var(--color-text-inverse);
+    color: var(--color-primary);
 }
 
 .social-icon svg {

@@ -2,6 +2,7 @@
    DESIGN SYSTEM - BOLD EDITORIAL STYLE
    ═══════════════════════════════════════════════════ */
 
+/* Light theme (default) */
 :root {
   /* Primary Colors - Bold Editorial */
   --color-primary: #E8192C;
@@ -68,6 +69,66 @@
   --shadow-lg: 0 8px 32px rgba(0, 0, 0, 0.16);
   --shadow-paper: 4px 4px 0px rgba(0, 0, 0, 0.1);
   --shadow-paper-hover: 8px 8px 0px rgba(232, 25, 44, 0.2);
+}
+
+/* Dark theme */
+[data-theme="dark"] {
+  /* Background Colors - Dark Theme */
+  --color-bg-primary: #0D0D0D;
+  --color-bg-secondary: #1A1A1A;
+  --color-bg-dark: #000000;
+  
+  /* Text Colors - Dark Theme */
+  --color-text-primary: #FFFFFF;
+  --color-text-secondary: #CCCCCC;
+  --color-text-muted: #999999;
+  --color-text-inverse: #000000;
+
+  /* Borders & Dividers - Dark Theme */
+  --color-border: #333333;
+  --color-border-dark: #555555;
+
+  /* Shadows - Dark Theme */
+  --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.3);
+  --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.4);
+  --shadow-lg: 0 8px 32px rgba(0, 0, 0, 0.5);
+  --shadow-paper: 4px 4px 0px rgba(255, 255, 255, 0.1);
+  --shadow-paper-hover: 8px 8px 0px rgba(232, 25, 44, 0.3);
+}
+
+/* Dark theme specific adjustments */
+[data-theme="dark"] body {
+  background-color: var(--color-bg-primary);
+  color: var(--color-text-primary);
+}
+
+[data-theme="dark"] .glass-card {
+  background: var(--color-bg-secondary);
+  border-color: var(--color-border);
+}
+
+[data-theme="dark"] .btn-outline {
+  color: var(--color-text-primary);
+  border-color: var(--color-border);
+  box-shadow: 4px 4px 0px var(--color-border);
+}
+
+[data-theme="dark"] .btn-outline:hover {
+  box-shadow: 6px 6px 0px var(--color-border);
+}
+
+[data-theme="dark"] .section-title::after {
+  background-color: var(--color-primary);
+}
+
+[data-theme="dark"] ::-webkit-scrollbar-track {
+  background: var(--color-bg-secondary);
+  border-left: 2px solid var(--color-border);
+}
+
+[data-theme="dark"] ::-webkit-scrollbar-thumb {
+  background: var(--color-primary);
+  border: 2px solid var(--color-bg-secondary);
 }
 
 /* ═══════════════════════════════════════════════════

@@ -73,7 +73,7 @@
 .skills-section {
     margin-top: var(--spacing-2xl);
     padding: var(--spacing-2xl);
-    background: var(--color-bg-dark);
+    background: var(--color-bg-secondary);
     border-radius: var(--radius-md);
     border: 3px solid var(--color-text-primary);
     position: relative;
@@ -94,7 +94,7 @@
 .skills-title {
     text-align: center;
     margin-bottom: var(--spacing-xl);
-    color: var(--color-text-inverse);
+    color: var(--color-text-primary);
     font-family: var(--font-display);
     font-weight: 800;
     font-size: var(--font-size-3xl);
@@ -112,20 +112,21 @@
     font-weight: 700;
     font-size: var(--font-size-base);
     font-family: var(--font-display);
-    color: var(--color-text-inverse);
+    color: var(--color-text-primary);
     animation: fadeInUp 0.6s ease-out forwards;
     opacity: 0;
-    background: transparent;
-    border: 2px solid var(--color-text-inverse);
+    background: var(--color-bg-primary);
+    border: 2px solid var(--color-text-primary);
     text-transform: uppercase;
     letter-spacing: 0.5px;
 }
 
 .skill-tag:hover {
     background: var(--color-primary);
+    color: var(--color-text-inverse);
     border-color: var(--color-primary);
     transform: translate(-2px, -2px);
-    box-shadow: 4px 4px 0px var(--color-text-inverse);
+    box-shadow: 4px 4px 0px var(--color-text-primary);
 }
 
 @media (max-width: 768px) {

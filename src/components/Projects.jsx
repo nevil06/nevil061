@@ -5,7 +5,7 @@ import './Projects.css';
 const Projects = () => {
     const [showAllProjects, setShowAllProjects] = useState(false);
 
-    // Simple projects data
+    // Keep the same 3 projects as before
     const projects = [
         {
             id: 1,

@@ -140,7 +140,6 @@
     object-fit: cover;
     object-position: center top;
     /* Paper-cut effect: remove background and blend */
-    mix-blend-mode: multiply;
     filter: drop-shadow(8px 8px 16px rgba(0, 0, 0, 0.2)) 
             drop-shadow(4px 4px 8px rgba(0, 0, 0, 0.1));
     transform: rotate(1deg);
@@ -165,6 +164,13 @@
         2% 15%, 
         1% 5%
     );
+}
+
+/* Dark theme specific image adjustments */
+[data-theme="dark"] .hero-image {
+    filter: brightness(1.1) contrast(1.1) 
+            drop-shadow(8px 8px 16px rgba(0, 0, 0, 0.4)) 
+            drop-shadow(4px 4px 8px rgba(0, 0, 0, 0.2));
 }
 
 .hero-image:hover {

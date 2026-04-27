@@ -14,33 +14,34 @@ export const fetchGitHubRepos = async () => {
             },
         });
 
-        // Categorize projects - Only 3 specific personal projects
-        const personalProjects = ['context-memo', 'contex-memo', 'talk-bro', 'turn-guard-ai', 'bunk-manager', 'bunkmanager'];
-        const groupProjects = ['mediplace', 'careerforge', 'ble-mirror', 'ble_mirror'];
-        
-        // Filter out specific repos and categorize
+        // Filter out only specific unwanted repos but keep ALL your repositories
         const allRepos = response.data
             .filter(repo => {
                 const name = repo.name.toLowerCase();
-                // Exclude specific repositories
-                const excludedRepos = ['n8n', 'aswsowe', 'gencolo', 'expence'];
-                return !excludedRepos.includes(name);
-            });
+                // Only exclude specific unwanted repositories and forks
+                const excludedRepos = ['n8n', 'aswsowe'];
+                return !excludedRepos.includes(name) && !repo.fork; // Exclude forked repos
+            })
+            .sort((a, b) => new Date(b.updated_at) - new Date(a.updated_at)); // Sort by most recently updated
+
+        // Categorize projects for specific components that need filtering
+        const personalProjects = ['context-memo', 'contex-memo', 'talk-bro', 'turn-guard-ai'];
+        const groupProjects = ['mediplace', 'careerforge', 'ble-mirror', 'ble_mirror'];
 
         // Separate personal and group projects
         const personalRepos = allRepos
             .filter(repo => personalProjects.includes(repo.name.toLowerCase()))
-            .sort((a, b) => b.stargazers_count - a.stargazers_count);
+            .sort((a, b) => new Date(b.updated_at) - new Date(a.updated_at));
 
         const groupRepos = allRepos
             .filter(repo => groupProjects.includes(repo.name.toLowerCase()))
-            .sort((a, b) => b.stargazers_count - a.stargazers_count);
+            .sort((a, b) => new Date(b.updated_at) - new Date(a.updated_at));
 
         // Return categorized repos
         return {
             personal: personalRepos,
             group: groupRepos,
-            all: allRepos.sort((a, b) => b.stargazers_count - a.stargazers_count)
+            all: allRepos // Return ALL repositories for AllProjects component
         };
     } catch (error) {
         console.error('Error fetching GitHub repositories:', error);

@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import ThemeToggle from './ThemeToggle';
 import './Navigation.css';
 
 const Navigation = () => {
@@ -58,6 +59,9 @@ const Navigation = () => {
                         </li>
                         <li>
                             <button onClick={() => scrollToSection('contact')}>Contact</button>
+                        </li>
+                        <li className="theme-toggle-nav">
+                            <ThemeToggle navStyle={true} />
                         </li>
                     </ul>
                 </div>

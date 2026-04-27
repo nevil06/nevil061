@@ -182,7 +182,7 @@
 }
 
 .tech-tag {
-    background: var(--color-bg-dark);
+    background: var(--color-primary);
     color: var(--color-text-inverse);
     padding: var(--spacing-xs) var(--spacing-sm);
     border-radius: var(--radius-sm);
