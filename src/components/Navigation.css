@@ -6,15 +6,14 @@
     z-index: 1000;
     padding: var(--spacing-md) 0;
     transition: all var(--transition-base);
-    background: transparent;
+    background: var(--color-bg-primary);
+    border-bottom: 2px solid transparent;
 }
 
 .navigation.scrolled {
-    background: var(--glass-bg);
-    backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
-    border-bottom: 1px solid var(--glass-border);
-    box-shadow: var(--shadow-md);
+    background: var(--color-bg-secondary);
+    border-bottom: 2px solid var(--color-text-primary);
+    box-shadow: 0 4px 0px rgba(0, 0, 0, 0.1);
     padding: var(--spacing-sm) 0;
 }
 
@@ -25,14 +24,15 @@
 }
 
 .nav-logo {
-    font-size: var(--font-size-xl);
-    font-weight: 700;
+    font-size: var(--font-size-2xl);
+    font-weight: 800;
     font-family: var(--font-display);
+    letter-spacing: -0.5px;
 }
 
 .nav-links {
     display: flex;
-    gap: var(--spacing-lg);
+    gap: var(--spacing-sm);
     list-style: none;
 }
 
@@ -40,24 +40,26 @@
     background: none;
     border: none;
     color: var(--color-text-primary);
-    font-size: var(--font-size-base);
-    font-weight: 500;
+    font-size: var(--font-size-sm);
+    font-weight: 700;
+    font-family: var(--font-display);
     cursor: pointer;
-    padding: var(--spacing-xs) var(--spacing-sm);
+    padding: var(--spacing-xs) var(--spacing-md);
     border-radius: var(--radius-sm);
     transition: all var(--transition-base);
     position: relative;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
 }
 
-.nav-links button::after {
+.nav-links button::before {
     content: '';
     position: absolute;
     bottom: 0;
-    left: 50%;
-    transform: translateX(-50%);
+    left: 0;
     width: 0;
-    height: 2px;
-    background: var(--gradient-primary);
+    height: 3px;
+    background: var(--color-primary);
     transition: width var(--transition-base);
 }
 
@@ -65,8 +67,8 @@
     color: var(--color-primary);
 }
 
-.nav-links button:hover::after {
-    width: 80%;
+.nav-links button:hover::before {
+    width: 100%;
 }
 
 .mobile-menu-btn {
@@ -74,14 +76,20 @@
     flex-direction: column;
     gap: 5px;
     background: none;
-    border: none;
+    border: 2px solid var(--color-text-primary);
     cursor: pointer;
-    padding: var(--spacing-xs);
+    padding: 8px;
+    border-radius: var(--radius-sm);
+    transition: all var(--transition-base);
+}
+
+.mobile-menu-btn:hover {
+    background: var(--color-accent);
 }
 
 .mobile-menu-btn span {
-    width: 25px;
-    height: 3px;
+    width: 22px;
+    height: 2px;
     background: var(--color-text-primary);
     border-radius: var(--radius-full);
     transition: all var(--transition-base);
@@ -97,15 +105,14 @@
         top: 70px;
         right: -100%;
         flex-direction: column;
-        background: var(--glass-bg);
-        backdrop-filter: blur(20px);
-        -webkit-backdrop-filter: blur(20px);
-        border: 1px solid var(--glass-border);
-        border-radius: var(--radius-lg);
-        padding: var(--spacing-lg);
-        gap: var(--spacing-sm);
+        background: var(--color-bg-secondary);
+        border: 2px solid var(--color-text-primary);
+        border-radius: var(--radius-sm);
+        padding: var(--spacing-md);
+        gap: var(--spacing-xs);
         transition: right var(--transition-base);
-        box-shadow: var(--shadow-lg);
+        box-shadow: 6px 6px 0px var(--color-text-primary);
+        min-width: 200px;
     }
 
     .nav-links.active {
@@ -115,5 +122,18 @@
     .nav-links button {
         width: 100%;
         text-align: left;
+        padding: var(--spacing-sm);
+    }
+
+    .nav-links button::before {
+        height: 100%;
+        width: 3px;
+        bottom: auto;
+        top: 0;
+    }
+
+    .nav-links button:hover::before {
+        width: 3px;
+        height: 100%;
     }
 }

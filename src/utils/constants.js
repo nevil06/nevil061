@@ -3,7 +3,7 @@
 export const SOCIAL_LINKS = {
   linkedin: 'https://www.linkedin.com/in/nevil-anson-dsouza/',
   github: 'https://github.com/nevil06',
-  instagram: 'https://instagram.com/nevil06', // Update with actual Instagram URL
+  instagram: 'https://www.instagram.com/_nevil_06/?hl=en',
 };
 
 export const GITHUB_USERNAME = 'nevil06';

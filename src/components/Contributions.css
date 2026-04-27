@@ -1,9 +1,23 @@
 .contributions-section {
     background: var(--color-bg-primary);
+    position: relative;
+}
+
+.contributions-section::before {
+    content: '02';
+    position: absolute;
+    top: 40px;
+    left: 40px;
+    font-size: 120px;
+    font-weight: 800;
+    font-family: var(--font-display);
+    color: var(--color-primary);
+    opacity: 0.05;
+    line-height: 1;
 }
 
 .contributions-grid {
-    margin-top: var(--spacing-xl);
+    margin-top: var(--spacing-2xl);
 }
 
 .contribution-card {
@@ -13,34 +27,60 @@
     text-align: center;
     gap: var(--spacing-md);
     padding: var(--spacing-xl);
+    position: relative;
+}
+
+.contribution-card::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: var(--color-accent);
+    opacity: 0;
+    transition: opacity var(--transition-base);
+    z-index: -1;
+    border-radius: var(--radius-sm);
+}
+
+.contribution-card:hover::after {
+    opacity: 0.1;
 }
 
 .contribution-icon {
-    width: 60px;
-    height: 60px;
+    width: 70px;
+    height: 70px;
     display: flex;
     align-items: center;
     justify-content: center;
-    background: var(--gradient-secondary);
-    border-radius: var(--radius-lg);
-    color: white;
+    background: var(--color-primary);
+    border-radius: var(--radius-sm);
+    color: var(--color-text-inverse);
+    border: 3px solid var(--color-text-primary);
+    box-shadow: 4px 4px 0px var(--color-text-primary);
 }
 
 .contribution-repo {
-    font-size: var(--font-size-lg);
+    font-size: var(--font-size-xl);
     margin: 0;
     color: var(--color-text-primary);
     word-break: break-word;
+    font-family: var(--font-display);
+    font-weight: 700;
 }
 
 .contribution-type {
     padding: var(--spacing-xs) var(--spacing-md);
-    background: var(--color-bg-tertiary);
-    border: 1px solid var(--glass-border);
+    background: var(--color-bg-secondary);
+    border: 2px solid var(--color-text-primary);
     border-radius: var(--radius-sm);
     font-size: var(--font-size-xs);
-    color: var(--color-text-secondary);
-    font-weight: 600;
+    color: var(--color-text-primary);
+    font-weight: 700;
+    font-family: var(--font-display);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
 }
 
 .contribution-card .btn {
@@ -54,6 +94,12 @@
 }
 
 @media (max-width: 768px) {
+    .contributions-section::before {
+        font-size: 80px;
+        top: 20px;
+        left: 20px;
+    }
+
     .contributions-grid {
         grid-template-columns: 1fr;
     }

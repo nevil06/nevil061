@@ -14,15 +14,34 @@ export const fetchGitHubRepos = async () => {
             },
         });
 
-        // Filter out specific repos and sort by stars
-        const repos = response.data
+        // Categorize projects - Only 3 specific personal projects
+        const personalProjects = ['context-memo', 'contex-memo', 'talk-bro', 'turn-guard-ai', 'bunk-manager', 'bunkmanager'];
+        const groupProjects = ['mediplace', 'careerforge', 'ble-mirror', 'ble_mirror'];
+        
+        // Filter out specific repos and categorize
+        const allRepos = response.data
             .filter(repo => {
                 const name = repo.name.toLowerCase();
-                return name !== 'n8n' && name !== 'aswsowe';
-            })
+                // Exclude specific repositories
+                const excludedRepos = ['n8n', 'aswsowe', 'gencolo', 'expence'];
+                return !excludedRepos.includes(name);
+            });
+
+        // Separate personal and group projects
+        const personalRepos = allRepos
+            .filter(repo => personalProjects.includes(repo.name.toLowerCase()))
             .sort((a, b) => b.stargazers_count - a.stargazers_count);
 
-        return repos;
+        const groupRepos = allRepos
+            .filter(repo => groupProjects.includes(repo.name.toLowerCase()))
+            .sort((a, b) => b.stargazers_count - a.stargazers_count);
+
+        // Return categorized repos
+        return {
+            personal: personalRepos,
+            group: groupRepos,
+            all: allRepos.sort((a, b) => b.stargazers_count - a.stargazers_count)
+        };
     } catch (error) {
         console.error('Error fetching GitHub repositories:', error);
         throw new Error('Failed to fetch repositories. Please try again later.');

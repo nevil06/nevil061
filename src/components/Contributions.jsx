@@ -1,107 +1,107 @@
 import { useState, useEffect } from 'react';
-import { GITHUB_USERNAME } from '../utils/constants';
+import { fetchGitHubRepos, formatRepoData } from '../services/github';
 import './Contributions.css';
 
 const Contributions = () => {
-    const [contributions, setContributions] = useState([]);
+    const [groupProjects, setGroupProjects] = useState([]);
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
-        // Fetch recent events to show contributions
-        const fetchContributions = async () => {
+        const loadGroupProjects = async () => {
             try {
-                const response = await fetch(`https://api.github.com/users/${GITHUB_USERNAME}/events/public?per_page=100`);
-                const events = await response.json();
-
-                // Filter for PullRequestEvent and IssuesEvent on other repos
-                const contributionEvents = events.filter(event =>
-                    (event.type === 'PullRequestEvent' || event.type === 'IssuesEvent') &&
-                    !event.repo.name.startsWith(`${GITHUB_USERNAME}/`)
-                );
-
-                // Get unique repos
-                const uniqueRepos = {};
-                contributionEvents.forEach(event => {
-                    const repoName = event.repo.name;
-                    if (!uniqueRepos[repoName]) {
-                        uniqueRepos[repoName] = {
-                            name: repoName,
-                            url: `https://github.com/${repoName}`,
-                            type: event.type === 'PullRequestEvent' ? 'Pull Request' : 'Issue',
-                            date: new Date(event.created_at),
-                        };
-                    }
-                });
-
-                setContributions(Object.values(uniqueRepos).slice(0, 6));
-            } catch (error) {
-                console.error('Error fetching contributions:', error);
+                setLoading(true);
+                const repoData = await fetchGitHubRepos();
+                const formattedRepos = repoData.group.map(formatRepoData);
+                setGroupProjects(formattedRepos);
+            } catch (err) {
+                console.error('Error fetching group projects:', err);
             } finally {
                 setLoading(false);
             }
         };
 
-        fetchContributions();
+        loadGroupProjects();
     }, []);
 
     if (loading) {
         return (
             <section className="section contributions-section">
                 <div className="container">
-                    <h2 className="section-title">Open Source Contributions</h2>
+                    <h2 className="section-title">Group Projects & Collaborations</h2>
                     <div className="loading">
                         <div className="spinner"></div>
+                        <p>Loading group projects...</p>
                     </div>
                 </div>
             </section>
         );
     }
 
-    if (contributions.length === 0) {
-        return null; // Don't show section if no contributions
+    if (groupProjects.length === 0) {
+        return null; // Don't show section if no group projects
     }
 
     return (
-        <section className="section contributions-section">
+        <section id="contributions" className="section contributions-section">
             <div className="container">
-                <h2 className="section-title">Open Source Contributions</h2>
+                <h2 className="section-title">Group Projects & Collaborations</h2>
                 <p className="section-description">
-                    Contributing to the open-source community
+                    Collaborative projects and team contributions
                 </p>
 
                 <div className="contributions-grid grid grid-3">
-                    {contributions.map((contrib, index) => (
-                        <div key={index} className="contribution-card glass-card">
+                    {groupProjects.map((project) => (
+                        <div key={project.id} className="contribution-card glass-card">
                             <div className="contribution-icon">
                                 <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
-                                    <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z" />
+                                    <path d="M16 4c0-1.11.89-2 2-2s2 .89 2 2-.89 2-2 2-2-.89-2-2M4 4c0-1.11.89-2 2-2s2 .89 2 2-.89 2-2 2-2-.89-2-2m5 4.5c0-.83.67-1.5 1.5-1.5s1.5.67 1.5 1.5-.67 1.5-1.5 1.5S9 9.33 9 8.5M12 1l-2 4h4l-2-4m7 7.5c0-.83.67-1.5 1.5-1.5s1.5.67 1.5 1.5-.67 1.5-1.5 1.5-1.5-.67-1.5-1.5M5 8.5c0-.83.67-1.5 1.5-1.5S8 7.67 8 8.5 7.33 10 6.5 10 5 9.33 5 8.5M12 23l2-4h-4l2 4z"/>
                                 </svg>
                             </div>
 
-                            <h3 className="contribution-repo">{contrib.name}</h3>
-                            <span className="contribution-type">{contrib.type}</span>
+                            <h3 className="contribution-repo">{project.name}</h3>
+                            <p className="project-description">{project.description}</p>
+                            
+                            {project.language && (
+                                <span className="contribution-type">{project.language}</span>
+                            )}
 
-                            <a
-                                href={contrib.url}
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                className="btn btn-outline btn-sm"
-                            >
-                                View Repository
-                            </a>
+                            <div className="project-stats">
+                                <div className="stat">
+                                    <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor">
+                                        <path d="M8 .25a.75.75 0 01.673.418l1.882 3.815 4.21.612a.75.75 0 01.416 1.279l-3.046 2.97.719 4.192a.75.75 0 01-1.088.791L8 12.347l-3.766 1.98a.75.75 0 01-1.088-.79l.72-4.194L.818 6.374a.75.75 0 01.416-1.28l4.21-.611L7.327.668A.75.75 0 018 .25z" />
+                                    </svg>
+                                    <span>{project.stars}</span>
+                                </div>
+                                <div className="stat">
+                                    <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor">
+                                        <path d="M5 3.25a.75.75 0 11-1.5 0 .75.75 0 011.5 0zm0 2.122a2.25 2.25 0 10-1.5 0v.878A2.25 2.25 0 005.75 8.5h1.5v2.128a2.251 2.251 0 101.5 0V8.5h1.5a2.25 2.25 0 002.25-2.25v-.878a2.25 2.25 0 10-1.5 0v.878a.75.75 0 01-.75.75h-4.5A.75.75 0 015 6.25v-.878zm3.75 7.378a.75.75 0 11-1.5 0 .75.75 0 011.5 0zm3-8.75a.75.75 0 100-1.5.75.75 0 000 1.5z" />
+                                    </svg>
+                                    <span>{project.forks}</span>
+                                </div>
+                            </div>
+
+                            <div className="project-actions">
+                                <a
+                                    href={project.url}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="btn btn-outline btn-sm"
+                                >
+                                    View Project
+                                </a>
+                                {project.homepage && (
+                                    <a
+                                        href={project.homepage}
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        className="btn btn-primary btn-sm"
+                                    >
+                                        Live Demo
+                                    </a>
+                                )}
+                            </div>
                         </div>
                     ))}
-                </div>
-
-                <div className="contributions-footer">
-                    <a
-                        href={`https://github.com/${GITHUB_USERNAME}`}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="btn btn-primary"
-                    >
-                        View All Activity on GitHub
-                    </a>
                 </div>
             </div>
         </section>

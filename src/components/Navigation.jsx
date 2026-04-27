@@ -51,6 +51,12 @@ const Navigation = () => {
                             <button onClick={() => scrollToSection('projects')}>Projects</button>
                         </li>
                         <li>
+                            <button onClick={() => scrollToSection('achievements')}>Achievements</button>
+                        </li>
+                        <li>
+                            <button onClick={() => scrollToSection('contributions')}>Collaborations</button>
+                        </li>
+                        <li>
                             <button onClick={() => scrollToSection('contact')}>Contact</button>
                         </li>
                     </ul>

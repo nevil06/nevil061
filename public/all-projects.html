@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>All Projects - Nevil Anson Dsouza</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;700;800&family=Caveat:wght@400;700&display=swap" rel="stylesheet">
+  </head>
+  <body>
+    <div id="all-projects-root"></div>
+    <script type="module">
+      import { StrictMode } from 'react'
+      import { createRoot } from 'react-dom/client'
+      import AllProjects from '../src/components/AllProjects.jsx'
+      import '../src/index.css'
+
+      createRoot(document.getElementById('all-projects-root')).render(
+        <StrictMode>
+          <AllProjects />
+        </StrictMode>,
+      )
+    </script>
+  </body>
+</html>
