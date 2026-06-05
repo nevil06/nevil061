@@ -1,0 +1,86 @@
+.moon-section {
+  position: relative;
+  height: 200vh; /* Scroll space for animations */
+  background-color: var(--color-bg);
+  width: 100%;
+}
+
+.moon-sticky-container {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  width: 100%;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.moon-video-wrapper {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1;
+  pointer-events: none;
+}
+
+.moon-video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0.7;
+  filter: grayscale(1) contrast(1.1) brightness(0.8);
+  transition: transform 0.1s ease-out;
+}
+
+/* Subtle glow behind moon */
+.moon-video-wrapper::after {
+  content: '';
+  position: absolute;
+  width: 30vw;
+  height: 30vw;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(255, 26, 26, 0.08) 0%, transparent 70%);
+  z-index: 2;
+  pointer-events: none;
+}
+
+.moon-overlay {
+  position: relative;
+  z-index: 3;
+  width: 100%;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+}
+
+.moon-quote-text {
+  font-family: var(--font-heading);
+  font-size: clamp(2rem, 6vw, 5rem);
+  font-weight: 800;
+  line-height: 1.1;
+  text-transform: uppercase;
+  color: var(--color-text);
+  letter-spacing: -0.01em;
+}
+
+@media (max-width: 768px) {
+  .moon-section {
+    height: 150vh;
+  }
+  
+  .moon-video {
+    object-fit: cover;
+  }
+
+  .moon-quote-text {
+    font-size: clamp(1.8rem, 8vw, 3rem);
+  }
+}

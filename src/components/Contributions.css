@@ -1,106 +1,90 @@
-.contributions-section {
-    background: var(--color-bg-primary);
-    position: relative;
+.contributions-section-new {
+  background-color: var(--color-bg);
+  padding: var(--spacing-2xl) 0;
+  width: 100%;
 }
 
-.contributions-section::before {
-    content: '02';
-    position: absolute;
-    top: 40px;
-    left: 40px;
-    font-size: 120px;
-    font-weight: 800;
-    font-family: var(--font-display);
-    color: var(--color-primary);
-    opacity: 0.05;
-    line-height: 1;
+.contributions-grid-new {
+  margin-top: var(--spacing-2xl);
+  display: flex;
+  flex-direction: column;
 }
 
-.contributions-grid {
-    margin-top: var(--spacing-2xl);
+.contribution-row {
+  display: grid;
+  grid-template-columns: 240px 1fr 120px;
+  gap: var(--spacing-lg);
+  padding: var(--spacing-lg) 0;
+  border-bottom: 1px solid var(--color-border);
+  align-items: center;
 }
 
-.contribution-card {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-    gap: var(--spacing-md);
-    padding: var(--spacing-xl);
-    position: relative;
+.contribution-row:first-child {
+  border-top: 1px solid var(--color-border);
 }
 
-.contribution-card::after {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: var(--color-accent);
-    opacity: 0;
-    transition: opacity var(--transition-base);
-    z-index: -1;
-    border-radius: var(--radius-sm);
+.collab-meta {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-xs);
 }
 
-.contribution-card:hover::after {
-    opacity: 0.1;
+.collab-name {
+  font-family: var(--font-heading);
+  font-size: 1.25rem;
+  font-weight: 800;
+  color: var(--color-text);
+  text-transform: uppercase;
 }
 
-.contribution-icon {
-    width: 70px;
-    height: 70px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background: var(--color-primary);
-    border-radius: var(--radius-sm);
-    color: var(--color-text-inverse);
-    border: 3px solid var(--color-text-primary);
-    box-shadow: 4px 4px 0px var(--color-text-primary);
+.collab-lang {
+  align-self: flex-start;
+  font-family: var(--font-heading);
+  font-size: 0.65rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--color-accent);
+  border: 1px solid rgba(255, 26, 26, 0.2);
+  padding: 0.15rem 0.4rem;
+  background-color: rgba(255, 26, 26, 0.02);
 }
 
-.contribution-repo {
-    font-size: var(--font-size-xl);
-    margin: 0;
-    color: var(--color-text-primary);
-    word-break: break-word;
-    font-family: var(--font-display);
-    font-weight: 700;
+.collab-desc {
+  color: var(--color-text-secondary);
+  font-size: 0.95rem;
+  line-height: 1.6;
 }
 
-.contribution-type {
-    padding: var(--spacing-xs) var(--spacing-md);
-    background: var(--color-bg-secondary);
-    border: 2px solid var(--color-text-primary);
-    border-radius: var(--radius-sm);
-    font-size: var(--font-size-xs);
-    color: var(--color-text-primary);
-    font-weight: 700;
-    font-family: var(--font-display);
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
+.collab-actions {
+  text-align: right;
 }
 
-.contribution-card .btn {
-    margin-top: auto;
+.collab-link-btn {
+  font-family: var(--font-heading);
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: var(--color-text);
+  text-decoration: none;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  transition: var(--transition-fast);
 }
 
-.contributions-footer {
-    display: flex;
-    justify-content: center;
-    margin-top: var(--spacing-2xl);
+.collab-link-btn:hover {
+  color: var(--color-accent);
+  transform: translateX(4px);
 }
 
 @media (max-width: 768px) {
-    .contributions-section::before {
-        font-size: 80px;
-        top: 20px;
-        left: 20px;
-    }
+  .contribution-row {
+    grid-template-columns: 1fr;
+    gap: var(--spacing-xs);
+    padding: var(--spacing-md) 0;
+  }
 
-    .contributions-grid {
-        grid-template-columns: 1fr;
-    }
+  .collab-actions {
+    text-align: left;
+    margin-top: var(--spacing-xs);
+  }
 }

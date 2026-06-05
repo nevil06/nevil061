@@ -1,64 +1,114 @@
+import { useState, useEffect, useRef } from 'react';
 import './Achievements.css';
 
 const Achievements = () => {
-    const achievements = [
+    const [activeTab, setActiveTab] = useState(0);
+    const sectionRef = useRef(null);
+
+    useEffect(() => {
+        const observer = new IntersectionObserver(
+            (entries) => {
+                entries.forEach((entry) => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                    }
+                });
+            },
+            { threshold: 0.1 }
+        );
+
+        if (sectionRef.current) {
+            const revealElements = sectionRef.current.querySelectorAll('.reveal-on-scroll');
+            revealElements.forEach((el) => observer.observe(el));
+        }
+
+        return () => {
+            if (sectionRef.current) {
+                const revealElements = sectionRef.current.querySelectorAll('.reveal-on-scroll');
+                revealElements.forEach((el) => observer.unobserve(el));
+            }
+        };
+    }, []);
+
+    const timelineData = [
         {
-            id: 1,
-            title: "BMIT Hackathon Runner-up",
-            event: "BMIT Hackathon 2026",
-            project: "SafeTurn AI",
-            description: "Built an AI-powered safety solution for vehicle turn assistance, securing runner-up position in the hackathon competition.",
-            date: "2026",
-            technologies: ["AI/ML", "Computer Vision", "Python"],
-            award: "Runner-up",
-            teamSize: "4 members"
+            year: "2026 — Present",
+            title: "Open Source Contributor",
+            subTitle: "Collaborating globally",
+            description: "Actively contributing to open-source projects, experimenting with AI integrations, and building developer-focused tools. Continuously learning in public while collaborating with the global developer community.",
+            award: "Community Developer",
+            team: "Individual & Collaborative",
+            tech: ["AI/ML", "Workflow Automation", "APIs", "Git"]
+        },
+        {
+            year: "2026",
+            title: "Hackathon Winner — BNMIT",
+            subTitle: "SafeTurn AI",
+            description: "Led the team and played a key role in the design and development of SafeTurn AI, an intelligent vehicle collision-prevention system. Secured 1st Place through innovation, teamwork, and technical execution.",
+            award: "1st Place Award",
+            team: "Team Leader (Design & Development)",
+            tech: ["AI/ML", "Computer Vision", "Python", "OpenCV"]
+        },
+        {
+            year: "2022 — Present",
+            title: "Tech Leader & Team Lead",
+            subTitle: "Hackathon & Software Teams",
+            description: "Led multiple hackathon teams and collaborated on diverse software projects. Guided teammates, coordinated development efforts, and gained hands-on experience in leadership, problem-solving, and product building.",
+            award: "Leadership & Collaboration",
+            team: "Team Lead & Coordinator",
+            tech: ["Product Management", "Architecture", "Agile", "Scrum"]
         }
     ];
 
     return (
-        <section id="achievements" className="section achievements-section">
+        <section ref={sectionRef} id="journey" className="journey-section-new">
             <div className="container">
-                <h2 className="section-title">Achievements & Awards</h2>
-                <p className="section-description">
-                    Recognition and accomplishments in competitions and events
-                </p>
+                <div className="reveal-on-scroll">
+                    <h2 className="section-title">Journey & Wins</h2>
+                </div>
 
-                <div className="achievements-grid">
-                    {achievements.map((achievement) => (
-                        <div key={achievement.id} className="achievement-card glass-card">
-                            <div className="achievement-header">
-                                <div className="achievement-badge">
-                                    <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
-                                        <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
-                                    </svg>
-                                    <span className="badge-text">{achievement.award}</span>
+                <div className="journey-interactive-container reveal-on-scroll">
+                    {/* Year Tabs on Left */}
+                    <div className="journey-tabs-column">
+                        {timelineData.map((item, index) => (
+                            <button
+                                key={item.year}
+                                className={`journey-tab-btn ${activeTab === index ? 'active' : ''}`}
+                                onClick={() => setActiveTab(index)}
+                            >
+                                <span className="tab-year">{item.year}</span>
+                                <span className="tab-indicator"></span>
+                            </button>
+                        ))}
+                    </div>
+
+                    {/* Timeline Event Details on Right */}
+                    <div className="journey-details-panel">
+                        <div className="journey-details-content">
+                            <span className="details-award">{timelineData[activeTab].award}</span>
+                            <h3 className="details-title">{timelineData[activeTab].title}</h3>
+                            <h4 className="details-subtitle">{timelineData[activeTab].subTitle}</h4>
+                            
+                            <p className="details-desc">{timelineData[activeTab].description}</p>
+                            
+                            <div className="details-meta-row">
+                                <div className="meta-block">
+                                    <span className="meta-label">Team & Role</span>
+                                    <span className="meta-value">{timelineData[activeTab].team}</span>
                                 </div>
-                                <div className="achievement-date">{achievement.date}</div>
                             </div>
 
-                            <div className="achievement-content">
-                                <h3 className="achievement-title">{achievement.title}</h3>
-                                <h4 className="achievement-event">{achievement.event}</h4>
-                                
-                                <div className="achievement-project">
-                                    <h5>Project: <span className="project-name">{achievement.project}</span></h5>
-                                    <p className="project-description">{achievement.description}</p>
-                                </div>
-
-                                <div className="achievement-tech">
-                                    <div className="tech-tags">
-                                        {achievement.technologies.map((tech, index) => (
-                                            <span key={index} className="tech-tag">
-                                                {tech}
-                                            </span>
-                                        ))}
-                                    </div>
+                            <div className="details-tech-row">
+                                <span className="meta-label">Technologies</span>
+                                <div className="details-tech-badges">
+                                    {timelineData[activeTab].tech.map((t) => (
+                                        <span key={t} className="tech-badge-journey">{t}</span>
+                                    ))}
                                 </div>
                             </div>
                         </div>
-                    ))}
+                    </div>
                 </div>
-
             </div>
         </section>
     );

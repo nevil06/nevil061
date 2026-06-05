@@ -1,5 +1,4 @@
 import { useState, useEffect } from 'react';
-import ThemeToggle from './ThemeToggle';
 import './Navigation.css';
 
 const Navigation = () => {
@@ -27,12 +26,12 @@ const Navigation = () => {
         <nav className={`navigation ${isScrolled ? 'scrolled' : ''}`}>
             <div className="container">
                 <div className="nav-content">
-                    <div className="nav-logo">
-                        <span className="gradient-text">Nevil Dsouza</span>
+                    <div className="nav-logo" onClick={() => scrollToSection('home')}>
+                        NEVIL<span className="dot">.</span>
                     </div>
 
                     <button
-                        className="mobile-menu-btn"
+                        className={`mobile-menu-btn ${isMobileMenuOpen ? 'active' : ''}`}
                         onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
                         aria-label="Toggle menu"
                     >
@@ -52,16 +51,10 @@ const Navigation = () => {
                             <button onClick={() => scrollToSection('projects')}>Projects</button>
                         </li>
                         <li>
-                            <button onClick={() => scrollToSection('achievements')}>Achievements</button>
-                        </li>
-                        <li>
-                            <button onClick={() => scrollToSection('contributions')}>Collaborations</button>
+                            <button onClick={() => scrollToSection('journey')}>Journey</button>
                         </li>
                         <li>
                             <button onClick={() => scrollToSection('contact')}>Contact</button>
-                        </li>
-                        <li className="theme-toggle-nav">
-                            <ThemeToggle navStyle={true} />
                         </li>
                     </ul>
                 </div>

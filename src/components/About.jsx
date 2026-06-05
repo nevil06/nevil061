@@ -1,55 +1,77 @@
-import { PERSONAL_INFO, SKILLS } from '../utils/constants';
+import { useEffect, useRef } from 'react';
 import './About.css';
 
 const About = () => {
-    return (
-        <section id="about" className="section about-section">
-            <div className="container">
-                <h2 className="section-title">About Me</h2>
+    const sectionRef = useRef(null);
 
-                <div className="profile-image-container">
-                    <img
-                        src="/profile.jpg"
-                        alt="Nevil Anson Dsouza - Full Stack Developer"
-                        className="profile-image"
-                    />
+    useEffect(() => {
+        const observer = new IntersectionObserver(
+            (entries) => {
+                entries.forEach((entry) => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                    }
+                });
+            },
+            { threshold: 0.1 }
+        );
+
+        const revealElements = sectionRef.current.querySelectorAll('.reveal-on-scroll');
+        revealElements.forEach((el) => observer.observe(el));
+
+        return () => {
+            revealElements.forEach((el) => observer.unobserve(el));
+        };
+    }, []);
+
+    const timelineEvents = [
+        {
+            year: "2026 — Present",
+            title: "Open Source Contributor",
+            description: "Actively contributing to open-source projects, experimenting with AI integrations, and building developer-focused tools. Continuously learning in public while collaborating with the global developer community."
+        },
+        {
+            year: "2026",
+            title: "Hackathon Winner — BNMIT",
+            description: "Led the team and played a key role in the design and development of SafeTurn AI, an intelligent vehicle collision-prevention system. Secured 1st Place through innovation, teamwork, and technical execution."
+        },
+        {
+            year: "2022 — Present",
+            title: "Tech Leader & Team Lead",
+            description: "Led multiple hackathon teams and collaborated on diverse software projects. Guided teammates, coordinated development efforts, and gained hands-on experience in leadership, problem-solving, and product building."
+        }
+    ];
+
+    return (
+        <section ref={sectionRef} id="about" className="about-section-new">
+            <div className="container">
+                <div className="about-header reveal-on-scroll">
+                    <h2 className="section-title">About Me</h2>
+                    <p className="about-headline">
+                        I build software,<br />
+                        design experiences,<br />
+                        and turn ideas into <span className="highlight-red">products</span>.
+                    </p>
                 </div>
 
-                <div className="about-content">
-                    <div className="about-text">
-                        <p className="about-intro">
-                            I'm a passionate <strong>{PERSONAL_INFO.title}</strong> based in {PERSONAL_INFO.location},
-                            dedicated to crafting exceptional digital experiences. With a strong foundation in modern
-                            web technologies, I transform ideas into elegant, functional solutions.
-                        </p>
-
-                        <p>
-                            My journey in software development has equipped me with a diverse skill set,
-                            allowing me to tackle complex challenges and deliver high-quality applications.
-                            I'm constantly learning and exploring new technologies to stay at the forefront
-                            of web development.
-                        </p>
-
-                        <p>
-                            When I'm not coding, you can find me contributing to open-source projects,
-                            learning new frameworks, or sharing knowledge with the developer community.
-                        </p>
-                    </div>
-
-                    <div className="skills-section">
-                        <h3 className="skills-title">Technical Skills</h3>
-                        <div className="skills-grid">
-                            {SKILLS.map((skill, index) => (
-                                <div
-                                    key={skill}
-                                    className="skill-tag glass-card"
-                                    style={{ animationDelay: `${index * 0.1}s` }}
-                                >
-                                    {skill}
-                                </div>
-                            ))}
+                <div className="about-timeline">
+                    <div className="timeline-line"></div>
+                    {timelineEvents.map((event, index) => (
+                        <div 
+                            key={index} 
+                            className="timeline-item reveal-on-scroll"
+                            style={{ transitionDelay: `${index * 0.15}s` }}
+                        >
+                            <div className="timeline-year">
+                                <span>{event.year}</span>
+                            </div>
+                            <div className="timeline-dot"></div>
+                            <div className="timeline-content">
+                                <h3 className="timeline-title">{event.title}</h3>
+                                <p className="timeline-desc">{event.description}</p>
+                            </div>
                         </div>
-                    </div>
+                    ))}
                 </div>
             </div>
         </section>
