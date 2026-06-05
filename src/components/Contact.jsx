@@ -49,7 +49,12 @@ const Contact = () => {
                     </p>
 
                     <div className="contact-actions-row">
-                        <a href={`mailto:${PERSONAL_INFO.email}`} className="contact-email-btn">
+                        <a 
+                            href={`https://mail.google.com/mail/?view=cm&fs=1&to=${PERSONAL_INFO.email}`}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="contact-email-btn"
+                        >
                             {PERSONAL_INFO.email}
                         </a>
                     </div>

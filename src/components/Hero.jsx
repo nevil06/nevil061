@@ -43,7 +43,9 @@ const Hero = () => {
                             Download Resume
                         </a>
                         <a 
-                            href={`mailto:${PERSONAL_INFO.email}`} 
+                            href={`https://mail.google.com/mail/?view=cm&fs=1&to=${PERSONAL_INFO.email}`} 
+                            target="_blank"
+                            rel="noopener noreferrer"
                             className="btn btn-outline"
                         >
                             Contact Me
