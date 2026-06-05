@@ -26,6 +26,11 @@ const About = () => {
 
     const timelineEvents = [
         {
+            year: "2026 — 2027",
+            title: "Google Gemini Ambassador",
+            description: "Selected to represent Google Gemini, running developer workshops, integrating generative AI models, and advocating for Google AI ecosystem tools."
+        },
+        {
             year: "2026 — Present",
             title: "Open Source Contributor",
             description: "Actively contributing to open-source projects, experimenting with AI integrations, and building developer-focused tools. Continuously learning in public while collaborating with the global developer community."
