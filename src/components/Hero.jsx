@@ -1,4 +1,4 @@
-import { SOCIAL_LINKS } from '../utils/constants';
+import { SOCIAL_LINKS, PERSONAL_INFO } from '../utils/constants';
 import './Hero.css';
 
 const Hero = () => {
@@ -42,9 +42,12 @@ const Hero = () => {
                         >
                             Download Resume
                         </a>
-                        <button onClick={() => handleScroll('contact')} className="btn btn-outline">
+                        <a 
+                            href={`mailto:${PERSONAL_INFO.email}`} 
+                            className="btn btn-outline"
+                        >
                             Contact Me
-                        </button>
+                        </a>
                     </div>
                 </div>
             </div>
