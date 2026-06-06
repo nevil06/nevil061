@@ -178,8 +178,9 @@
   .journey-tab-btn {
     border-bottom: none;
     border-right: 1px solid var(--color-border);
-    flex: 1;
-    padding: var(--spacing-md);
+    flex: 0 0 auto;
+    padding: 1rem 1.5rem;
+    white-space: nowrap;
     justify-content: center;
   }
 
@@ -192,6 +193,15 @@
   }
 
   .journey-details-panel {
-    padding: var(--spacing-lg);
+    padding: var(--spacing-md);
+  }
+}
+
+@media (max-width: 480px) {
+  .details-title {
+    font-size: 1.3rem;
+  }
+  .details-subtitle {
+    font-size: 0.95rem;
   }
 }

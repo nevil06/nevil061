@@ -52,6 +52,13 @@ body {
   color: var(--color-text);
   line-height: 1.6;
   position: relative;
+  overflow-x: hidden;
+  width: 100%;
+}
+
+#root, .App {
+  overflow-x: hidden;
+  width: 100%;
 }
 
 /* Scroll Progress */
@@ -223,6 +230,12 @@ h1, h2, h3, h4 {
   padding: var(--spacing-xl);
 }
 
+@media (max-width: 768px) {
+  .all-projects-modal {
+    padding: var(--spacing-md) var(--spacing-sm);
+  }
+}
+
 .modal-close-btn {
   position: absolute;
   top: var(--spacing-md);
@@ -260,4 +273,20 @@ h1, h2, h3, h4 {
 .back-to-top-btn:hover {
   border-color: var(--color-accent);
   color: var(--color-accent);
+}
+
+@media (max-width: 768px) {
+  .container {
+    padding: 0 1.2rem;
+  }
+  .section-title {
+    font-size: clamp(1.8rem, 5vw, 2.8rem);
+    margin-bottom: var(--spacing-lg);
+  }
+}
+
+@media (max-width: 480px) {
+  .section-title {
+    font-size: 1.6rem;
+  }
 }

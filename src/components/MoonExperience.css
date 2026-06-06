@@ -84,3 +84,9 @@
     font-size: clamp(1.8rem, 8vw, 3rem);
   }
 }
+
+@media (max-width: 480px) {
+  .moon-quote-text {
+    font-size: 1.4rem;
+  }
+}

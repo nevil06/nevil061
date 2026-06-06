@@ -115,11 +115,24 @@
 }
 
 @media (max-width: 768px) {
+  .contact-cta-title {
+    font-size: clamp(1.8rem, 6vw, 3rem);
+  }
+
   .contact-brief {
     font-size: 0.95rem;
   }
   
   .scroll-back-to-top {
     justify-content: flex-start;
+  }
+}
+
+@media (max-width: 480px) {
+  .contact-cta-title {
+    font-size: 1.8rem;
+  }
+  .contact-email-btn {
+    font-size: 1.35rem;
   }
 }

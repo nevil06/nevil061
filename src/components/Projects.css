@@ -175,3 +175,13 @@
     padding-left: 0;
   }
 }
+
+@media (max-width: 480px) {
+  .project-title-showcase {
+    font-size: 1.5rem;
+  }
+  .project-desc-text {
+    font-size: 0.9rem;
+    line-height: 1.6;
+  }
+}

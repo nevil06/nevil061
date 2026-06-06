@@ -93,8 +93,12 @@
 
 /* Responsive adjustments */
 @media (max-width: 768px) {
+  .about-headline {
+    font-size: clamp(1.5rem, 5vw, 2.5rem);
+  }
+
   .about-timeline {
-    padding-left: var(--spacing-lg);
+    padding-left: var(--spacing-md);
   }
 
   .timeline-line {
@@ -104,7 +108,7 @@
   .timeline-item {
     grid-template-columns: 1fr;
     gap: var(--spacing-xs);
-    padding-left: var(--spacing-md);
+    padding-left: var(--spacing-sm);
   }
 
   .timeline-dot {
@@ -117,5 +121,11 @@
 
   .timeline-title {
     font-size: 1.2rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .about-headline {
+    font-size: 1.35rem;
   }
 }

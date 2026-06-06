@@ -269,3 +269,9 @@
     padding: var(--spacing-sm);
   }
 }
+
+@media (max-width: 480px) {
+  .all-projects-grid {
+    grid-template-columns: 1fr;
+  }
+}
