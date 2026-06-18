@@ -22,8 +22,7 @@ export const fetchGitHubRepos = async () => {
                 const excludedRepos = ['n8n', 'aswsowe'];
                 const explicitProjects = [
                     'context-memo', 'contex-memo', 'talk-bro', 'turn-guard-ai',
-                    'mediplace', 'careerforge', 'ble-mirror', 'ble_mirror',
-                    'ble-trust-registry', 'ble_trust-registry'
+                    'careerforge', 'ble-trust-registry', 'ble_trust-registry'
                 ];
                 const isExplicit = explicitProjects.includes(name);
                 return !excludedRepos.includes(name) && (!repo.fork || isExplicit); // Allow forks only if they are explicit projects
@@ -32,7 +31,7 @@ export const fetchGitHubRepos = async () => {
 
         // Categorize projects for specific components that need filtering
         const personalProjects = ['context-memo', 'contex-memo', 'talk-bro', 'turn-guard-ai'];
-        const groupProjects = ['mediplace', 'careerforge', 'ble-mirror', 'ble_mirror', 'ble-trust-registry', 'ble_trust-registry'];
+        const groupProjects = ['careerforge', 'ble-trust-registry', 'ble_trust-registry'];
 
         // Separate personal and group projects
         const personalRepos = allRepos
