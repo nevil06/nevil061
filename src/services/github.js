@@ -26,7 +26,7 @@ export const fetchGitHubRepos = async () => {
 
         // Categorize projects for specific components that need filtering
         const personalProjects = ['context-memo', 'contex-memo', 'talk-bro', 'turn-guard-ai'];
-        const groupProjects = ['mediplace', 'careerforge', 'ble-mirror', 'ble_mirror'];
+        const groupProjects = ['mediplace', 'careerforge', 'ble-mirror', 'ble_mirror', 'ble-trust-registry', 'ble_trust-registry'];
 
         // Separate personal and group projects
         const personalRepos = allRepos
