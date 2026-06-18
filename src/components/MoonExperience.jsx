@@ -20,31 +20,39 @@ const MoonExperience = () => {
             const scrolledAmount = -rect.top;
             const totalScrollable = sectionHeight - viewHeight;
             
-            if (scrolledAmount >= 0 && scrolledAmount <= totalScrollable) {
+            let opacity = 0;
+            let scale = 1;
+            
+            if (rect.top > 0) {
+                // Section is entering from the bottom
+                // rect.top goes from viewHeight to 0
+                // We start fading in the text when the top of the section is in the lower 60% of the screen
+                const fadeStart = viewHeight * 0.6;
+                if (rect.top < fadeStart) {
+                    opacity = (fadeStart - rect.top) / fadeStart; // Fades from 0 to 1 as rect.top approaches 0
+                } else {
+                    opacity = 0;
+                }
+                scale = 1;
+            } else if (scrolledAmount >= 0 && scrolledAmount <= totalScrollable) {
                 const progress = scrolledAmount / totalScrollable; // 0 to 1
                 
-                // Opacity curve: fades in, stays visible, fades out
-                let opacity = 0;
-                if (progress < 0.4) {
-                    opacity = progress / 0.4; // Fade in during first 40%
-                } else if (progress >= 0.4 && progress <= 0.7) {
-                    opacity = 1; // Stay solid from 40% to 70%
+                // We are stuck: stay fully visible, then fade out during the last 20% of the scroll timeline
+                if (progress <= 0.8) {
+                    opacity = 1;
                 } else {
-                    opacity = 1 - (progress - 0.7) / 0.3; // Fade out during last 30%
+                    opacity = 1 - (progress - 0.8) / 0.2; // Fade out during the last 20%
                 }
                 
-                setTextOpacity(opacity);
-                
-                // Subtle scale effect on moon
-                const scale = 1 + progress * 0.1;
-                setVideoScale(scale);
-            } else if (rect.top > 0) {
-                setTextOpacity(0);
-                setVideoScale(1);
-            } else if (rect.bottom < viewHeight) {
-                setTextOpacity(0);
-                setVideoScale(1.1);
+                // Subtle scale effect on the moon
+                scale = 1 + progress * 0.1;
+            } else {
+                opacity = 0;
+                scale = 1.1;
             }
+            
+            setTextOpacity(opacity);
+            setVideoScale(scale);
         };
 
         window.addEventListener('scroll', handleScroll);
