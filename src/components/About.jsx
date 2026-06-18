@@ -37,8 +37,8 @@ const About = () => {
         },
         {
             year: "2026",
-            title: "Hackathon Winner — BNMIT",
-            description: "Led the team and played a key role in the design and development of SafeTurn AI, an intelligent vehicle collision-prevention system. Secured 1st Place through innovation, teamwork, and technical execution."
+            title: "Hackathon Runner Up — BNMIT",
+            description: "Led the team and played a key role in the design and development of SafeTurn AI, an intelligent vehicle collision-prevention system. Secured Runner Up position through innovation, teamwork, and technical execution."
         },
         {
             year: "2022 — Present",

@@ -62,10 +62,10 @@ const Achievements = () => {
         },
         {
             year: "2026",
-            title: "Hackathon Winner — BNMIT",
+            title: "Hackathon Runner Up — BNMIT",
             subTitle: "SafeTurn AI",
-            description: "Led the team and played a key role in the design and development of SafeTurn AI, an intelligent vehicle collision-prevention system. Secured 1st Place through innovation, teamwork, and technical execution.",
-            award: "1st Place Award",
+            description: "Led the team and played a key role in the design and development of SafeTurn AI, an intelligent vehicle collision-prevention system. Secured Runner Up position through innovation, teamwork, and technical execution.",
+            award: "Runner Up Award",
             team: "Team Leader (Design & Development)",
             tech: ["AI/ML", "Computer Vision", "Python", "OpenCV"],
             hasLogo: false
