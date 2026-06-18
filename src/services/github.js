@@ -18,9 +18,15 @@ export const fetchGitHubRepos = async () => {
         const allRepos = response.data
             .filter(repo => {
                 const name = repo.name.toLowerCase();
-                // Only exclude specific unwanted repositories and forks
+                // Only exclude specific unwanted repositories
                 const excludedRepos = ['n8n', 'aswsowe'];
-                return !excludedRepos.includes(name) && !repo.fork; // Exclude forked repos
+                const explicitProjects = [
+                    'context-memo', 'contex-memo', 'talk-bro', 'turn-guard-ai',
+                    'mediplace', 'careerforge', 'ble-mirror', 'ble_mirror',
+                    'ble-trust-registry', 'ble_trust-registry'
+                ];
+                const isExplicit = explicitProjects.includes(name);
+                return !excludedRepos.includes(name) && (!repo.fork || isExplicit); // Allow forks only if they are explicit projects
             })
             .sort((a, b) => new Date(b.updated_at) - new Date(a.updated_at)); // Sort by most recently updated
 
